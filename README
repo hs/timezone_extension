@@ -18,6 +18,11 @@ Following options are added to select_datetime method to display timezone select
   :timezone_sort_by_name
       Sort options by names insted of offsets.
 
+Install
+=======
+
+./script/plugin install git://github.com/hs/timezone_extension.git
+
 Example
 =======
 
