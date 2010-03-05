@@ -1,0 +1,40 @@
+TimezoneExtension
+=================
+
+Add timezone selector in select_datetime form.
+
+Following options are added to select_datetime method to display timezone selector.
+
+  :include_timezone
+      if set to true, display timezone selector.
+  :timezone_type
+      Specify timezone display form. The default is 'short'.
+        'short' : shortname(UTC, JST, etc.).
+        'long'  : longname (Hawaii, Guam, Tokyo, etc.)
+        'offset': available offsets.
+  :timezone
+      Set selected timezone instead of the default, which is dependent on
+      time_zone configuration in "config/environment.rb".
+  :timezone_sort_by_name
+      Sort options by names insted of offsets.
+
+Example
+=======
+
+* get full datetime selector form:
+  <% form_for(@timer) do |f| %>
+      :
+    <%= f.datetime_select :label, { :include_seconds => true, :include_timezone => true } %>
+      :
+  <% end %>
+ or
+  <%= datetime_select "datetime", "label", { :include_seconds => true, :include_timezone => true } %>
+
+* timezone tag:
+  <%= select_timezone %>
+
+* to set id/name attributes in timezone tag:
+  <%= select_timezone :prefix =>"datetime", :field_name => "label(7i)" %>
+
+
+Copyright (c) 2010 Hideki SAKAMOTO, released under the MIT license
