@@ -23,8 +23,10 @@ Install
 
 ./script/plugin install git://github.com/hs/timezone_extension.git
 
-Example
-=======
+How to use
+==========
+
+== View
 
 * get full datetime selector form:
   <% form_for(@timer) do |f| %>
@@ -41,5 +43,35 @@ Example
 * to set id/name attributes in timezone tag:
   <%= select_timezone :prefix =>"datetime", :field_name => "label(7i)" %>
 
+== Controller
 
+This plugin also appends two methods in ActionController:
+
+get_multiparameter_attributes(object_params, name):
+    Get the array from multiparameter form.
+
+get_multiparamete_time(object_parame, name):
+    Get the Time object from datetime_select form.
+
+For example, if you accept a request like:
+   params => {
+       datetime => {
+           label(1i) => "2010", label(2i) => "1", label(3i) => "1",
+           label(4i) => "0", label(5i) => "0", label(6i) => "0",
+           label(7i) => "+0900" 
+       }
+   }
+
+You can get the array of params[:datetime][:label*]:
+   get_multiparameter_attributes(params[:datetime], "label")
+   #=> [ 2010, 1, 1, 0, 0, 0, 900 ]
+
+or Time object:
+   get_multiparameter_time(params[:datetime], "label")
+   #=> Fri, 01 Jan 2010 00:00:00 JST +09:00 (if Time.zone == 'Tokyo')
+
+The get_multiparameter_attributes() recognize 'i' and 'f' suffix and convert them to integer and float.
+Otherwize, a parameter remains in string. See tests for detail.
+
+---
 Copyright (c) 2010 Hideki SAKAMOTO, released under the MIT license

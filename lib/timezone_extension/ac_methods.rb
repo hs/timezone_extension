@@ -1,7 +1,7 @@
 # SelectDatetimeWithTimezone Controller methods.
 module MultiparameterGetter
-  def get_multiparameter_time(params, name)
-    t = get_multiparameter_attributes(params, name)
+  def get_multiparameter_time(object_params, name)
+    t = get_multiparameter_attributes(object_params, name)
     if t.size == 7
       hour,min = t.pop.divmod 100
 #      ofs = hour * 60 + min
@@ -13,9 +13,9 @@ module MultiparameterGetter
     end
   end
 
-  def get_multiparameter_attributes(params, name)
+  def get_multiparameter_attributes(object_params, name)
     multi_parameters = []
-    params.each do |k,v|
+    object_params.each do |k,v|
       multi_parameters << [ k, v ] if k =~ /^#{name}\(\d+[if]*\)/
     end
     multi_parameters.sort {

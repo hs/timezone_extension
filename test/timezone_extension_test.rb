@@ -18,14 +18,14 @@ class TimezoneExtensionTest < ActionView::TestCase
   end
 
   def test_controller_methods
-    # get_multiparamete_attributes
+    # get_multiparameter_attributes
     input1 = {
       "test(1i)" => "10", "test(2)" => "string", "test(3f)" => "3.14", "test(4i)" => "3.14",
       "test(5i)" => "g", "test(6f)" => "g", "test(7i)" => "1g", "test(8f)" => "3.14g"
     }
     expected1 = [ 10, "string", 3.14, 3, 0, 0, 1, 3.14 ]
 
-    # get_multiparamete_time
+    # get_multiparameter_time
     input2 = { "test(1i)" => "2010", "test(2i)" => "1", "test(3i)" => "1",
       "test(4i)" => "0", "test(5i)" => "0", "test(6i)" => "0", "test(7i)" => "+0000" }
     input3 = { "test(1i)" => "2010", "test(2i)" => "1", "test(3i)" => "1",
